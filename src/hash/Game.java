@@ -25,10 +25,14 @@ public class Game {
         while (!fim) {
             if (aux%2 == 0) {
                 System.out.println("Vez de X");
-                board.addX(input.nextInt(), input.nextInt());
+                while (!board.addX(input.nextInt(), input.nextInt())) {
+                    System.out.println("Jogada inválida! Tente novamente...");
+                }
             } else {
                 System.out.println("Vez de O");
-                board.addO(input.nextInt(), input.nextInt());
+                while (!board.addO(input.nextInt(), input.nextInt())) {
+                    System.out.println("Jogada inválida! Tente novamente...");
+                }
             }
             
             aux++;
@@ -64,7 +68,9 @@ public class Game {
         while (!fim) {
             if (aux%2 == 0) {
                 System.out.println("Vez de X");
-                board.addX(input.nextInt(), input.nextInt());
+                while (!board.addX(input.nextInt(), input.nextInt())) {
+                    System.out.println("Jogada inválida! Tente novamente...");
+                }
             } else {
                 System.out.println("Vez de O");
                 board = ia.IaPlayed(board).getBoard();
