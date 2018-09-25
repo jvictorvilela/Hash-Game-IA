@@ -24,21 +24,25 @@ public class Board {
     }
     
     public boolean addX(int i, int j) {
-        if (board[i-1][j-1] == 0) {
-            board[i-1][j-1] = PLAYED_X;
+        if (i >= 1 && i <= 3
+                && j >= 1 && j <= 3
+                && board[i - 1][j - 1] == 0) {
+            board[i - 1][j - 1] = PLAYED_X;
+            return true;
         } else {
             return false;
         }
-        return true;
     }
     
     public boolean addO(int i, int j) {
-        if (board[i-1][j-1] == 0) {
-            board[i-1][j-1] = PLAYED_O;
+        if (i >= 1 && i <= 3
+                && j >= 1 && j <= 3
+                && board[i - 1][j - 1] == 0) {
+            board[i - 1][j - 1] = PLAYED_O;
+            return true;
         } else {
             return false;
         }
-        return true;
     }
     
     // verifica se o jogo já acabou
