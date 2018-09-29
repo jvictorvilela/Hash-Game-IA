@@ -43,10 +43,4 @@ public class PlayTree {
         return root;
     }
     
-    public void printRootChildren() {
-        for (Node node : root.getChildren()) {
-            System.out.println("teste:");
-            node.getBoard().printBoard();
-        }
-    }
 }
