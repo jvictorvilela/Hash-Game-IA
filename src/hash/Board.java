@@ -23,22 +23,11 @@ public class Board {
         board = matrix;
     }
     
-    public boolean addX(int i, int j) {
+    public boolean play(int i, int j, short player) {
         if (i >= 1 && i <= 3
                 && j >= 1 && j <= 3
                 && board[i - 1][j - 1] == 0) {
-            board[i - 1][j - 1] = PLAYED_X;
-            return true;
-        } else {
-            return false;
-        }
-    }
-    
-    public boolean addO(int i, int j) {
-        if (i >= 1 && i <= 3
-                && j >= 1 && j <= 3
-                && board[i - 1][j - 1] == 0) {
-            board[i - 1][j - 1] = PLAYED_O;
+            board[i - 1][j - 1] = player;
             return true;
         } else {
             return false;

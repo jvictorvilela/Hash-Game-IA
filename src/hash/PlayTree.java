@@ -25,9 +25,9 @@ public class PlayTree {
                 if (node.getBoard().getMatrix()[i][j] == 0) {
                     Board board = new Board(node.getBoard().copyMatrix()); // faz uma copia do tabuleiro do nó
                     if (symbol == PLAYED_X) {
-                        board.addX(i+1, j+1);
+                        board.play(i+1, j+1, board.PLAYED_X);
                     } else {
-                        board.addO(i+1, j+1);
+                        board.play(i+1, j+1, board.PLAYED_O);
                     }
                     node.addSon(new Node(board));
                 }

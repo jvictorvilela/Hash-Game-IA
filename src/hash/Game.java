@@ -25,12 +25,12 @@ public class Game {
         while (!fim) {
             if (aux%2 == 0) {
                 System.out.println("Vez de X");
-                while (!board.addX(input.nextInt(), input.nextInt())) {
+                while (!board.play(input.nextInt(), input.nextInt(), board.PLAYED_X)) {
                     System.out.println("Jogada inválida! Tente novamente...");
                 }
             } else {
                 System.out.println("Vez de O");
-                while (!board.addO(input.nextInt(), input.nextInt())) {
+                while (!board.play(input.nextInt(), input.nextInt(), board.PLAYED_O)) {
                     System.out.println("Jogada inválida! Tente novamente...");
                 }
             }
@@ -68,7 +68,7 @@ public class Game {
         while (!fim) {
             if (aux%2 == 0) {
                 System.out.println("Vez de X");
-                while (!board.addX(input.nextInt(), input.nextInt())) {
+                while (!board.play(input.nextInt(), input.nextInt(), board.PLAYED_X)) {
                     System.out.println("Jogada inválida! Tente novamente...");
                 }
             } else {
