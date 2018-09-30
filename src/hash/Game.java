@@ -1,4 +1,4 @@
-package com.mycompany.camera.lixo;
+package hash;
 
 import java.util.Scanner;
 
@@ -16,25 +16,33 @@ public class Game {
         jogadores = new Player[2];
         jogadores[0] = p1;
         jogadores[1] = p2;
+        board = new Board();
         input = new Scanner(System.in);
     }
 
     public void start() {
-        board = new Board();
         int aux = 0;
-        short resultado = board.JOGO_NAO_ACABOU;
-
-        while (resultado == board.JOGO_NAO_ACABOU) {
+        short check;
+        boolean fim = false;
+        while (!fim) {
             jogadores[aux % 2].play(board);
+
             aux++;
             board.printBoard();
-            resultado = board.check();
-        }
+            check = board.check();
+            switch (check) {
+                case (1):
+                    System.out.println(jogadores[0].getName() + " ganhou!");
+                    break;
+                case (2):
+                    System.out.println(jogadores[1].getName() + " ganhou!");
+                    break;
+                case (-1):
+                    System.out.println("Empate!");
 
-        if (resultado == board.EMPATE) {
-            System.out.println("Empate!");
-        } else {
-            System.out.println(resultado + " ganhou!");
+                    break;
+            }
+            fim = check != 0;
         }
 
     }
