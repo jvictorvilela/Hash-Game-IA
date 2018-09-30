@@ -5,16 +5,19 @@ package hash;
  * @author victor
  */
 public class IA {
+    final short PLAYED_X = 1;
+    final short PLAYED_O = 2;
     final boolean MAX = true;
     final boolean MIN = false;
-    public IA() {
-        
+    private short symbol;
+    public IA(short symbol) {
+        this.symbol = symbol;
     }
     
     // IA Faz a jogada
     public Node IaPlayed(Board board) {
         // gera a árvore
-        PlayTree tree = new PlayTree(board);        
+        PlayTree tree = new PlayTree(board, symbol);        
         // chama minimax() para filhos da raiz
         short max = -2;
         Node bestPlayed = null;
@@ -32,7 +35,7 @@ public class IA {
     
     public short minimax(Node node, boolean minimax) {
         if (node.getChildren().size() == 0) { // nó folha
-            return utility(node);
+            return utility(node, symbol);
         }
         if (minimax == MAX) {
             short max = -2;
@@ -57,16 +60,29 @@ public class IA {
         return 0;
     }
     
-    public short utility(Node node) {
+    public short utility(Node node, short max) {
         short check = node.getBoard().check();
-        switch (check) {
-            case -1:
-                return 0;
-            case 1:
-                return -1;
-            case 2:
-                return 1;
+        
+        if (max == PLAYED_O) {
+            switch (check) {
+                case -1:
+                    return 0;
+                case 1:
+                    return -1;
+                case 2:
+                    return 1;
+            }
+        } else {
+            switch (check) {
+                case -1:
+                    return 0;
+                case 1:
+                    return 1;
+                case 2:
+                    return -1;
+            }
         }
+        
         return 0;
     }
 }
