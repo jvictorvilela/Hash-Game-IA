@@ -14,6 +14,7 @@ public class MinimaxPlayer extends Player {
 
     @Override
     public void play(Board board) {
+        System.out.println(this.getName() + " jogando...");
         Board newBoard = ia.IaPlayed(board).getBoard();
         board.replaceBoard(newBoard);
     }
