@@ -116,5 +116,9 @@ public class Board {
         return newBoard;
     }
     
+    public void replaceBoard(Board board) {
+        this.board = board.getMatrix();
+    }
+    
     
 }
