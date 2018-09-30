@@ -7,15 +7,15 @@ import java.util.ArrayList;
  * @author victor
  */
 public class PlayTree {
-    final boolean PLAYED_X = true;
-    final boolean PLAYED_O = false;
+    final short PLAYED_X = 1;
+    final short PLAYED_O = 2;
     private Node root;
-    public PlayTree(Board board) {
+    public PlayTree(Board board, short symbol) {
         this.root = new Node(board);
-        generateTree(root, PLAYED_O);
+        generateTree(root, symbol);
     }
     
-    public void generateTree(Node node, boolean symbol) { // symbol indica de quem é a vez no momento (X ou O)
+    public void generateTree(Node node, short symbol) { // symbol indica de quem é a vez no momento (X ou O)
         if (node.getBoard().check() != 0) {
             return;
         }
@@ -35,7 +35,11 @@ public class PlayTree {
         }
         
         for (Node aux : node.getChildren()) {
-            generateTree(aux, !symbol);
+            if (symbol == 1) {
+                generateTree(aux, (short)2);
+            } else {
+                generateTree(aux, (short)1);
+            }
         }
     }
     
