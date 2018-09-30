@@ -23,22 +23,15 @@ public class Board {
         board = matrix;
     }
     
-    public boolean addX(int i, int j) {
-        if (board[i-1][j-1] == 0) {
-            board[i-1][j-1] = PLAYED_X;
+    public boolean play(int i, int j, short player) {
+        if (i >= 1 && i <= 3
+                && j >= 1 && j <= 3
+                && board[i - 1][j - 1] == 0) {
+            board[i - 1][j - 1] = player;
+            return true;
         } else {
             return false;
         }
-        return true;
-    }
-    
-    public boolean addO(int i, int j) {
-        if (board[i-1][j-1] == 0) {
-            board[i-1][j-1] = PLAYED_O;
-        } else {
-            return false;
-        }
-        return true;
     }
     
     // verifica se o jogo já acabou
@@ -121,6 +114,10 @@ public class Board {
             }
         }
         return newBoard;
+    }
+    
+    public void replaceBoard(Board board) {
+        this.board = board.getMatrix();
     }
     
     
