@@ -95,11 +95,13 @@ public class Board {
     }
     
     public void printBoard() {
+        System.out.println("");
         System.out.println(" "+getSymbol(board[0][0])+" | "+getSymbol(board[0][1])+" | "+getSymbol(board[0][2])+" ");
         System.out.println("-----------");
         System.out.println(" "+getSymbol(board[1][0])+" | "+getSymbol(board[1][1])+" | "+getSymbol(board[1][2])+" ");
         System.out.println("-----------");
         System.out.println(" "+getSymbol(board[2][0])+" | "+getSymbol(board[2][1])+" | "+getSymbol(board[2][2])+" ");
+        System.out.println("");
     }
     
     public short[][] getMatrix() {
