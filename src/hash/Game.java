@@ -15,24 +15,19 @@ public class Game {
         input = new Scanner(System.in);
     }
     
-    public void startPvP() {
+
+    public void start(Player player1, Player player2) {
         int aux = 0;
         short check;
         boolean fim = false;
-        
-        board.printBoard();
-        System.out.println("");
-        while (!fim) {
+        while(!fim) {
+            
             if (aux%2 == 0) {
-                System.out.println("Vez de X");
-                while (!board.play(input.nextInt(), input.nextInt(), board.PLAYED_X)) {
-                    System.out.println("Jogada inválida! Tente novamente...");
-                }
+                System.out.println("Vez de "+player1.getName()+" ("+player1.getSymbolName()+") :");
+                player1.play(board);
             } else {
-                System.out.println("Vez de O");
-                while (!board.play(input.nextInt(), input.nextInt(), board.PLAYED_O)) {
-                    System.out.println("Jogada inválida! Tente novamente...");
-                }
+                System.out.println("Vez de "+player2.getName()+" ("+player2.getSymbolName()+") :");
+                player2.play(board);
             }
             
             aux++;
@@ -42,11 +37,21 @@ public class Game {
             check = board.check();
             switch (check) {
                 case (1) :
-                    System.out.println("X ganhou!");
+                    if (player1.getSymbol() == 1) {
+                        System.out.println(player1.getName()+" ganhou!");
+                    } else {
+                        System.out.println(player2.getName()+" ganhou!");
+
+                    }
                     fim = true;
                     break;
                 case (2) :
-                    System.out.println("O ganhou!");
+                    if (player1.getSymbol() == 2) {
+                        System.out.println(player1.getName()+" ganhou!");
+                    } else {
+                        System.out.println(player2.getName()+" ganhou!");
+
+                    }                       
                     fim = true;
                     break;
                 case (-1) :
@@ -55,48 +60,9 @@ public class Game {
                     break;
             }
         }
+        
     }
     
-    public void startPvIA() {
-        IA ia = new IA();
-        int aux = 0;
-        short check;
-        boolean fim = false;
-        
-        board.printBoard();
-        System.out.println("");
-        while (!fim) {
-            if (aux%2 == 0) {
-                System.out.println("Vez de X");
-                while (!board.play(input.nextInt(), input.nextInt(), board.PLAYED_X)) {
-                    System.out.println("Jogada inválida! Tente novamente...");
-                }
-            } else {
-                System.out.println("Vez de O");
-                board = ia.IaPlayed(board).getBoard();
-            }
-            
-            aux++;
-            System.out.println("");
-            board.printBoard();
-            System.out.println("");
-            check = board.check();
-            switch (check) {
-                case (1) :
-                    System.out.println("X ganhou!");
-                    fim = true;
-                    break;
-                case (2) :
-                    System.out.println("O ganhou!");
-                    fim = true;
-                    break;
-                case (-1) :
-                    System.out.println("Empate!");
-                    fim = true;
-                    break;
-            }
-        }
-    }
     
     
     
