@@ -1,4 +1,4 @@
-package hash;
+package com.mycompany.camera.lixo;
 
 import java.util.Scanner;
 
@@ -7,63 +7,36 @@ import java.util.Scanner;
  * @author victor
  */
 public class Game {
-    
+
     Scanner input;
     Board board;
-    public Game() {
-        board = new Board();
+    final Player[] jogadores;
+
+    public Game(Player p1, Player p2) {
+        jogadores = new Player[2];
+        jogadores[0] = p1;
+        jogadores[1] = p2;
         input = new Scanner(System.in);
     }
-    
 
-    public void start(Player player1, Player player2) {
+    public void start() {
+        board = new Board();
         int aux = 0;
-        short check;
-        boolean fim = false;
-        while(!fim) {
-            
-            if (aux%2 == 0) {
-                System.out.println("Vez de "+player1.getName()+" ("+player1.getSymbolName()+") :");
-                player1.play(board);
-            } else {
-                System.out.println("Vez de "+player2.getName()+" ("+player2.getSymbolName()+") :");
-                player2.play(board);
-            }
-            
+        short resultado = board.JOGO_NAO_ACABOU;
+
+        while (resultado == board.JOGO_NAO_ACABOU) {
+            jogadores[aux % 2].play(board);
             aux++;
-            System.out.println("");
             board.printBoard();
-            System.out.println("");
-            check = board.check();
-            switch (check) {
-                case (1) :
-                    if (player1.getSymbol() == 1) {
-                        System.out.println(player1.getName()+" ganhou!");
-                    } else {
-                        System.out.println(player2.getName()+" ganhou!");
-
-                    }
-                    fim = true;
-                    break;
-                case (2) :
-                    if (player1.getSymbol() == 2) {
-                        System.out.println(player1.getName()+" ganhou!");
-                    } else {
-                        System.out.println(player2.getName()+" ganhou!");
-
-                    }                       
-                    fim = true;
-                    break;
-                case (-1) :
-                    System.out.println("Empate!");
-                    fim = true;
-                    break;
-            }
+            resultado = board.check();
         }
-        
+
+        if (resultado == board.EMPATE) {
+            System.out.println("Empate!");
+        } else {
+            System.out.println(resultado + " ganhou!");
+        }
+
     }
-    
-    
-    
-    
+
 }
